@@ -133,12 +133,5 @@ Shipping temperature-controlled item: 22.5°C
     shipItem(std::string("std::string"));
     shipItem(22.5);
 
-
-
-
-
-
-
-
     return 0;
 }
