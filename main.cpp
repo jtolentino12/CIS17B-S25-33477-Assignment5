@@ -4,13 +4,34 @@
 #include <typeinfo>
 
 template<typename T>
+std::string getTypeName() {
+    return "unknown";
+}
+
+template<>
+std::string getTypeName<int>() {
+    return "int";
+}
+
+template<>
+std::string getTypeName<double>() {
+    return "double";
+}
+
+template<>
+std::string getTypeName<std::string>() {
+    return "std::string";
+}
+
+
+template<typename T>
 class Package {
 private:
     T item;
 public:
     Package(T i) : item(i) {}
     void label() {
-        std::cout << "Generic package containing: " << typeid(T).name() << "\n";
+        std::cout << "Generic package containing: " << ::getTypeName<T>() << "\n";
     }
 };
 
@@ -34,7 +55,7 @@ private:
 public:
     Package(T* i) : item(i) {}
     void label() {
-        std::cout << "Fragile package for pointer to type: " << typeid(T).name() << "\n";
+        std::cout << "Fragile package for pointer to type: " << ::getTypeName<T>() << "\n";
     }
 };
 
@@ -63,7 +84,7 @@ public:
 
 template<typename T>
 void shipItem(const T& item) {
-    std::cout << "Shipping item of type: " << typeid(T).name() << "\n";
+    std::cout << "Shipping item of type: " << ::getTypeName<T>() << "\n";
 }
 
 template<>
