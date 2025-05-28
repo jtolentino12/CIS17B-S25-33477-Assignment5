@@ -70,3 +70,54 @@ template<>
 void shipItem(const double& item) {
     std::cout << "Shipping temperature-controlled item: " << item << "°C\n";
 }
+
+int main() {
+ /*
+Generic package containing: int
+Book package: "C++ Primer"
+Fragile package for pointer to type: double
+Added item to box: "The Pragmatic Programmer"
+Added item to box: "Clean Code"
+Box contents:
+- The Pragmatic Programmer
+- Clean Code
+Shipping item of type: int
+Shipping item of type: std::string
+Shipping temperature-controlled item: 22.5°C
+ */
+
+    // Package int
+    Package<int> intPackage(32);
+    intPackage.label();
+
+    // Package string
+    Package<std::string> bookPackage("C++ Primer");
+    bookPackage.label();
+
+    // Package double
+    double temp = 40.0;
+    Package<double*> fragilePackage(&temp);
+    fragilePackage.label();
+
+    // Box string, 3
+    Box<std::string, 3> bookBox;
+    bookBox.addItem("The Pragmatic Programmer");
+    bookBox.addItem("Clean Code");
+
+    // printItems()
+    bookBox.printItems();
+
+    // shipitem() int, string, double
+    shipItem(10);
+    shipItem(std::string("std::string"));
+    shipItem(40.0);
+
+
+
+
+
+
+
+
+    return 0;
+}
